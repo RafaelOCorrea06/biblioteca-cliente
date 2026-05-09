@@ -1,0 +1,16 @@
+<article class="card">
+  <div class="card-header">
+    <h3>{{ book.titulo }}</h3>
+    {% if book.disponivel %}
+      <span class="badge ok">Disponível</span>
+    {% else %}
+      <span class="badge off">Emprestado</span>
+    {% endif %}
+  </div>
+  <p class="muted">{{ book.autor }} • {{ book.ano }}</p>
+  <p>{{ book.resumo }}</p>
+  <div class="card-footer">
+    <span>{{ book.categoria }}</span>
+    <a class="button ghost" href="{{ url_for('detalhes_livro', book_id=book.id) }}">Detalhes</a>
+  </div>
+</article>

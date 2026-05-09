@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ book.titulo }} | Livraria{% endblock %}
+
+{% block content %}
+<section class="book-detail">
+  <article class="panel">
+    <p class="eyebrow">{{ book.categoria }}</p>
+    <h1>{{ book.titulo }}</h1>
+    <p class="muted">{{ book.autor }} • {{ book.ano }}</p>
+    <p>{{ book.resumo }}</p>
+
+    {% if book.disponivel %}
+      <span class="badge ok">Disponível</span>
+    {% else %}
+      <span class="badge off">Emprestado</span>
+    {% endif %}
+  </article>
+
+  <aside class="panel">
+    <h2>Ações</h2>
+
+    {% if book.disponivel %}
+      <form method="post" action="{{ url_for('emprestar_livro', book_id=book.id) }}" class="stack">
+        <label for="borrower_name">Nome de quem vai pegar emprestado</label>
+        <input id="borrower_name" name="borrower_name" placeholder="Ex.: Ana Silva" required>
+        <button type="submit">Emprestar</button>
+      </form>
+    {% else %}
+      {% if book.emprestimo_ativo %}
+        <p class="muted">Emprestado para: <strong>{{ book.emprestimo_ativo.borrower_name }}</strong></p>
+      {% endif %}
+      <form method="post" action="{{ url_for('devolver_livro', book_id=book.id) }}">
+        <button type="submit">Devolver</button>
+      </form>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('excluir_livro', book_id=book.id) }}" onsubmit="return confirm('Deseja excluir este livro?');">
+      <button class="danger" type="submit">Excluir livro</button>
+    </form>
+  </aside>
+</section>
+{% endblock %}

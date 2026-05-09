@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Teste do back-end | Livraria{% endblock %}
+
+{% block content %}
+<section class="panel">
+  <p class="eyebrow">Integração cliente-servidor</p>
+  <h1>Teste do back-end</h1>
+  <p>Esta página pertence ao repositório cliente e consome dados do repositório servidor pela variável <code>API_BASE_URL</code>.</p>
+
+  <h2>/api/health</h2>
+  <pre>{{ health | tojson(indent=2) }}</pre>
+
+  <h2>/api/debug/teste</h2>
+  <pre>{{ debug | tojson(indent=2) }}</pre>
+
+  <p><a class="button" href="{{ api_base_url }}/api/debug/teste" target="_blank">Abrir teste direto no servidor</a></p>
+</section>
+{% endblock %}

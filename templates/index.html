@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Início | Livraria{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">Arquitetura Cliente-Servidor</p>
+    <h1>Qualquer livro de maneiora fácil e rápida</h1>
+    <p>Pesquise pelo livro e selecione quem vai empresta-lo.</p>
+  </div>
+  <form class="search" action="{{ url_for('index') }}" method="get">
+    <input name="q" placeholder="Buscar por título, autor ou categoria" value="{{ term }}">
+    <button type="submit">Buscar</button>
+  </form>
+</section>
+
+<section class="dashboard">
+  <article><span>{{ dashboard.total_livros }}</span><p>Total de livros</p></article>
+  <article><span>{{ dashboard.disponiveis }}</span><p>Disponíveis</p></article>
+  <article><span>{{ dashboard.indisponiveis }}</span><p>Indisponíveis</p></article>
+  <article><span>{{ dashboard.emprestimos_ativos }}</span><p>Empréstimos ativos</p></article>
+</section>
+
+<section class="section-header">
+  <h2>Destaques</h2>
+  <a href="{{ url_for('catalogo') }}">Ver catálogo completo</a>
+</section>
+
+<section class="grid">
+  {% for book in books %}
+    {% include "_book_card.html" %}
+  {% else %}
+    <p>Nenhum livro encontrado.</p>
+  {% endfor %}
+</section>
+{% endblock %}

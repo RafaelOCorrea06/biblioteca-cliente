@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Novo livro | Livraria{% endblock %}
+
+{% block content %}
+<section class="panel form-panel">
+  <p class="eyebrow">Cadastro</p>
+  <h1>Novo livro</h1>
+
+  <form method="post" class="stack">
+    <label>Título
+      <input name="titulo" value="{{ form_data.get('titulo', '') }}" required>
+    </label>
+
+    <label>Autor
+      <input name="autor" value="{{ form_data.get('autor', '') }}" required>
+    </label>
+
+    <label>Categoria
+      <input name="categoria" value="{{ form_data.get('categoria', '') }}" required>
+    </label>
+
+    <label>Ano
+      <input name="ano" type="number" value="{{ form_data.get('ano', '') }}" required>
+    </label>
+
+    <label>Resumo
+      <textarea name="resumo" rows="4">{{ form_data.get('resumo', '') }}</textarea>
+    </label>
+
+    <label class="check">
+      <input name="disponivel" type="checkbox" {% if form_data.get('disponivel', True) %}checked{% endif %}>
+      Disponível para empréstimo
+    </label>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+</section>
+{% endblock %}

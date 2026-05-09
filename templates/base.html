@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Livraria Cliente-Servidor{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('index') }}">Livraria</a>
+    <nav>
+      <a href="{{ url_for('index') }}">Início</a>
+      <a href="{{ url_for('catalogo') }}">Catálogo</a>
+      <a href="{{ url_for('novo_livro') }}">Novo livro</a>
+      <a href="{{ url_for('teste_backend') }}">Teste back-end</a>
+      <a href="{{ api_base_url }}/api/health" target="_blank">Back-end</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <section class="messages">
+          {% for category, message in messages %}
+            <p class="message {{ category }}">{{ message }}</p>
+          {% endfor %}
+        </section>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
