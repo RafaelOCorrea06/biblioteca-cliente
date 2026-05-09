@@ -72,34 +72,3 @@ Tela de teste da integração:
 http://localhost:5001/teste-backend
 ```
 
-## Deploy no Render
-
-1. Faça deploy do repositório `livraria-servidor` primeiro.
-2. Copie a URL do servidor.
-3. Crie outro repositório no GitHub chamado `livraria-cliente`.
-4. Envie este código para ele.
-5. No Render, escolha **New > Web Service**.
-6. Conecte o repositório `livraria-cliente`.
-7. Use:
-   - Build Command: `pip install -r requirements.txt`
-   - Start Command: `gunicorn app:app`
-8. Configure a variável:
-
-```env
-API_BASE_URL=https://URL-DO-SERVIDOR
-```
-
-## Entrega do laboratório
-
-Entregue:
-
-```text
-Link do front-end:
-https://URL-DO-CLIENTE
-
-Link do back-end:
-https://URL-DO-SERVIDOR
-
-Função de teste do back-end:
-https://URL-DO-SERVIDOR/api/debug/teste
-```
